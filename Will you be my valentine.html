@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Day Invitation</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #ff99cc, #ff6699); /* Gradient background */
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    position: relative; /* Relative positioning for confetti */
+  }
+  #invitation {
+    margin-top: 50px;
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    position: relative;
+    animation: fadeIn 1s ease-out; /* Fade-in animation */
+    animation-delay: 0.5s; /* Delay for the invitation to appear */
+    z-index: 1; /* Ensure invitation text is above confetti */
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  #yes, #no {
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #fff; /* White text color */
+    background-color: #ff5e78; /* Pink button color */
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  #yes:hover, #no:hover {
+    background-color: #ff859c; /* Lighter pink on hover */
+  }
+  h1 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 36px;
+    margin-bottom: 15px;
+    background-image: linear-gradient(45deg, #ff00ff, #00ffff); /* Gradient color */
+    -webkit-background-clip: text; /* Clip the background to the text */
+    -webkit-text-fill-color: transparent; /* Make the text transparent */
+  }
+  .heart {
+    color: plum; /* Plum color */
+    font-size: 40px;
+    margin-bottom: 20px;
+    animation: heartbeat 1s infinite; /* Apply heartbeat animation */
+  }
+  @keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  .floating-heart {
+    animation: float 2s ease-in-out infinite; /* Apply floating animation */
+    font-size: 40px;
+    margin-bottom: 20px;
+    background-image: linear-gradient(45deg, #ff00ff, #00ffff); /* Gradient color for floating heart */
+    -webkit-background-clip: text; /* Clip the background to the text */
+    -webkit-text-fill-color: transparent; /* Make the text transparent */
+  }
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  .neon-button {
+    background-color: #ff00ff; /* Neon purple background color */
+    border: none;
+    color: #fff; /* White text color */
+    padding: 20px 20px;
+    font-size: 20px;
+    border-radius: 5px; /* Rounded corners */
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+  .neon-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #00ff00, #ffff00, #ff00ff); /* Neon rainbow gradient */
+    background-size: 400%;
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  .neon-button:hover::before {
+    opacity: 1;
+  }
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff4da6, 0 0 40px orange, 0 0 50px yellow, 0 0 60px green, 0 0 70px blue;
+    }
+    50% {
+      text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff4da6, 0 0 40px orange, 0 0 50px yellow, 0 0 60px green, 0 0 70px blue, 0 0 80px purple;
+    }
+    100% {
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff4da6, 0 0 40px orange, 0 0 50px yellow, 0 0 60px green, 0 0 70px blue;
+    }
+  }
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-20px); /* Bounce animation */
+    }
+    60% {
+      transform: translateY(-10px); /* Bounce animation */
+    }
+  }
+  .glow-text {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ff00ff; /* Neon purple color */
+    animation: glow 2s ease-in-out infinite; /* Apply glow animation */
+  }
+  .glow-text.light-up {
+    animation: glow 2s ease-in-out infinite; /* Retain only glow animation */
+  }
+  @keyframes lightUp {
+    0%, 100% {
+      color: #ff00ff; /* Neon purple color */
+    }
+    50% {
+      color: #fff; /* White color */
+    }
+  }
+  .rainbow-glow {
+    animation: rainbowGlow 4s linear infinite; /* Apply rainbow glow animation */
+  }
+  @keyframes rainbowGlow {
+    0% {
+      box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #00ff00, 0 0 80px #ffff00, 0 0 100px #ff00ff, 0 0 120px #00ffff, 0 0 140px #00ff00, 0 0 160px #ffff00, 0 0 180px #ff00ff;
+    }
+    100% {
+      box-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff, 0 0 90px #00ff00, 0 0 120px #ffff00, 0 0 150px #ff00ff, 0 0 180px #00ffff, 0 0 210px #00ff00, 0 0 240px #ffff00, 0 0 270px #ff00ff;
+    }
+  }
+  .confetti-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* Make container non-clickable */
+    z-index: 0; /* Ensure confetti is behind other elements */
+  }
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red; /* Neon purple color */
+    opacity: 0.7;
+    animation: confettiFall 3s ease-out infinite; /* Apply confetti animation */
+  }
+  @keyframes confettiFall {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100vh); /* Fall to the bottom of the viewport */
+    }
+  }
+  .message {
+    font-size: 25px;
+    font-family: cursive;
+    color: black ;/* Neon purple color */
+    margin-top: 20px;
+    display: none; /* Initially hidden */
+    animation: glow 2s ease-in-out infinite, bounce 2s ease infinite; /* Apply glow and bounce animation */
+  }
+  .animated-word{
+    display: flex;
+    align-items: center;
+    text-decoration: double;
+    margin-left: 38%;
+
+}
+.letter{
+    transition: 0.4s;
+    transform: translateX(0);
+    cursor: grab;
+    color: mediumslateblue;
+    font-size: 3.5em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 2px 2px 2px black;
+    
+}
+
+.letter:hover{
+    transform: translateY(-1rem);
+    background: -webkit-linear-gradient(120deg,hs1(19,90%,52%),hs1(56,100%,50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+</style>
+</head>
+<body>
+  <div class="animated-word">
+    <div class="letter">V</div>
+    <div class="letter">A</div>
+    <div class="letter">L</div>
+    <div class="letter">E</div>
+    <div class="letter">N</div>
+    <div class="letter">T</div>
+    <div class="letter">I</div>
+    <div class="letter">N</div>
+    <div class="letter">E</div>
+    <div class="letter">S</div>
+</div>
+<div class="container">
+    <h1>Samaan Jay Patel</h1>
+    <div class="heart">&#10084;</div>
+    <div class="floating-heart">&#10084;</div>
+    <div id="invitation" class="glow-text light-up rainbow-glow">Will you be my valentine?</div>
+    <div class="button-container">
+      <button id="yes" class="neon-button" onclick="checkResponse('yes')">Yes</button>
+      <button id="no" class="neon-button" onclick="checkResponse('no')">No</button>
+    </div>
+    <div class="confetti-container"></div> <!-- Container for confetti -->
+    <div class="message">I love you so much, my favourite sex doll</div> <!-- Message container -->
+  </div>
+<script>
+  function checkResponse(response) {
+    if (response === 'yes') {
+      var answer = prompt("Samaan Jay Patel? Say yes or stand against the wall with knife against your throat:");
+      if (answer && answer.toLowerCase() === 'yes') {
+        // Confetti animation
+        for (let i = 0; i < 50; i++) {
+          createConfetti();
+        }
+        // Show message after confetti animation
+        setTimeout(function() {
+          document.querySelector('.message').style.display = 'block';
+        }, 3000); // Adjust timing based on confetti animation duration
+        alert("i would have killed you if you said no ;)");
+      } else {
+        alert("Kill yourself why would you lose out on me!");
+      }
+    } else if (response === 'no') {
+      stopConfetti(); // Stop confetti if 'No' is clicked
+      document.querySelector('.message').style.display = 'none'; // Hide message if 'No' is clicked
+      alert("Try again bitch!");
+    }
+  }
+  
+  function createConfetti() {
+    const confettiContainer = document.querySelector('.confetti-container');
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left = `${Math.random() * window.innerWidth}px`; // Randomize left position
+    confetti.style.animationDelay = `${Math.random() * 3}s`; // Randomize animation delay
+    confettiContainer.appendChild(confetti);
+    // Remove confetti after animation ends
+    confetti.addEventListener('animationend', () => {
+      confetti.remove();
+    });
+  }
+  
+  function stopConfetti() {
+    const confettiContainer = document.querySelector('.confetti-container');
+    confettiContainer.innerHTML = ''; // Clear confetti container
+  }
+</script>
+</body>
+</html>
+
+
+
+
+
+
